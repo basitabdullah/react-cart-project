@@ -1,0 +1,49 @@
+@import "colors";
+.logo{
+  width: 60px;
+  height: 60px;
+  >img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+nav{
+  background-color: $secondary;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 2rem;
+
+  .links{
+    display: flex;
+    align-items: center;
+
+    >a{
+      color: $primary;
+      font-size: 1.2rem;
+      margin: 0 1rem;
+      transition: all .3s;
+
+      & :hover{
+        opacity: 0.5;
+      }
+
+      >p{
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 17px;
+        height: 17px;
+        font: 900 0.7rem "Roboto" ;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate(70%,-90%);
+      }
+    }
+  }
+
+
+
+}
