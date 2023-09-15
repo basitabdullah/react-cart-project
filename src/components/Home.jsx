@@ -1,5 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
+import toast from "react-hot-toast";
 const Home = () => {
   const productList = [
     {
@@ -12,7 +13,8 @@ const Home = () => {
     {
       name: "Apple 2023 Mac Mini",
       price: "899",
-      imgSrc: "https://m.media-amazon.com/images/I/61jup8h--XL._AC_UY327_FMwebp_QL65_.jpg",
+      imgSrc:
+        "https://m.media-amazon.com/images/I/61jup8h--XL._AC_UY327_FMwebp_QL65_.jpg",
       id: 2,
     },
 
@@ -24,16 +26,22 @@ const Home = () => {
     },
   ];
 
-  function addToCart(options){
-console.log(options);
+  function addToCart(options) {
+    console.log(options);
+    toast.success("Added to Cart");
   }
   return (
     <div className="home">
-     {
-      productList.map((i)=>(
-        <ProductCard key={i.id} name={i.name} price={i.price} imgSrc={i.imgSrc} id = {i.id} handler={addToCart}/>
-      ))
-     }
+      {productList.map((i) => (
+        <ProductCard
+          key={i.id}
+          name={i.name}
+          price={i.price}
+          imgSrc={i.imgSrc}
+          id={i.id}
+          handler={addToCart}
+        />
+      ))}
     </div>
   );
 };
