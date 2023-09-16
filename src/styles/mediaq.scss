@@ -1,19 +1,33 @@
-@media screen  and (max-width:820px ){
-    .cart{
-        grid-template-columns: 1fr;
+@media screen and (max-width: 820px) {
+  .cart {
+    grid-template-columns: 1fr;
 
+    > aside {
+      padding: 2rem;
+      border-radius: 0;
+      > h2 {
+        font: 100 1.2rem "Roboto";
+      }
+    }
+  }
 
-        >aside{
-            padding: 2rem;
-            border-radius: 0;
-            >h2{
-                font: 100 1.2rem "Roboto";
-            }
-        }
+  .cartItem {
+    padding: 5px;
+    > img {
+      width: 4rem;
+      height: 130%;
+      object-fit: contain;
     }
-    .cartItem{
-        >article{
-            margin: 20px;
-        }
+
+    > article {
+      font-size: 10px;
+      line-height: 20px;
+      text-align: center;
+      
+      >p{
+        color: rgb(31, 102, 179);
+      }
     }
+    
+  }
 }

@@ -26,10 +26,10 @@ const Home = () => {
       id: 3,
     },
   ];
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
   function addToCart(options) {
-    console.log(options);
-    dispatch({type:"addToCart", payload:options})
+    dispatch({ type: "addToCart", payload: options });
+    dispatch({ type: "calculatePrice" });
     toast.success("Added to Cart");
   }
   return (

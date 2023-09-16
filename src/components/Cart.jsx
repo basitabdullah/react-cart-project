@@ -1,32 +1,65 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const Cart = () => {
+  const { cartItems,subTotal,tax,shippingCharges,total } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const decrement = (id) => {
+    dispatch({
+      type: "decrement",
+      payload: id,
+    });
+    dispatch({
+      type: "calculatePrice",
+    });
+  };
 
-  const {cartItems} = useSelector(state=>state.cart)
+  const increment = (id) => {
+    dispatch({
+      type: "addToCart",
+      payload: { id },
+    });
+    dispatch({
+      type: "calculatePrice",
+    });
+  };
+
+  const deleteHandler = (id) => {
+    dispatch({
+      type: "deleteFromCart",
+      payload: id,
+    });
+    dispatch({
+      type: "calculatePrice",
+    });
+  };
   return (
     <div className="cart">
       <main>
-      {
-        cartItems.length > 0 ?  (
-          cartItems.map((i)=>(
-            <CartItem 
-            imgSrc={"https://m.media-amazon.com/images/I/81Fm0tRFdHL._SX679_.jpg"}
-            name={"apple"}
-            price={"455"}
-            qty={1}
-            id="gfgsgofhsg"
+        {cartItems.length > 0 ? (
+          cartItems.map((i) => (
+            <CartItem
+              imgSrc={i.imgSrc}
+              name={i.name}
+              price={i.price}
+              qty={i.quantity}
+              id={i.id}
+              key={i.id}
+              decrement={decrement}
+              increment={increment}
+              deleteHandler={deleteHandler}
             />
           ))
-        ): <h1>No items in the cart.</h1>
-      }
+        ) : (
+          <h1>No items in the cart.</h1>
+        )}
       </main>
 
       <aside>
-        <h2>Subtotal: ${2000}</h2>
-        <h2>Shipping: ${200}</h2>
-        <h2>Tax: ${20}</h2>
-        <h2>Total: ${2220}</h2>
+        <h2>Subtotal: ${subTotal}</h2>
+        <h2>Shipping: ${shippingCharges}</h2>
+        <h2>Tax: ${tax}</h2>
+        <h2>Total: ${total}</h2>
       </aside>
     </div>
   );
@@ -53,7 +86,7 @@ const CartItem = ({
       <p>{qty}</p>
       <button onClick={() => increment(id)}>+</button>
     </div>
-    <AiFillDelete />
+    <AiFillDelete onClick={() => deleteHandler(id)} />
   </div>
 );
 export default Cart;
