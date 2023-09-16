@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 const Home = () => {
   const productList = [
     {
@@ -25,9 +26,10 @@ const Home = () => {
       id: 3,
     },
   ];
-
+ const dispatch = useDispatch()
   function addToCart(options) {
     console.log(options);
+    dispatch({type:"addToCart", payload:options})
     toast.success("Added to Cart");
   }
   return (
